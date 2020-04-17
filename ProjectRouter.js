@@ -41,4 +41,24 @@ router.post("/:id/resources", (req, res) => {
     res.status(201).json({ message: "resource made" });
   });
 });
+
+router.get("/:id/tasks", (req, res) => {
+  const { id } = req.params;
+  Projects.getTasks()
+    .where({ project_id: id })
+    .then((tasks) => {
+      res.status(200).json(tasks);
+    });
+});
+
+router.post("/:id/tasks", (req, res) => {
+  const { id } = req.params;
+  const newTask = req.body;
+
+  Projects.addTask(newTask, id).then((task) => {
+    res.status(201).json({ message: "task  made" });
+  });
+});
+
+router.post;
 module.exports = router;
