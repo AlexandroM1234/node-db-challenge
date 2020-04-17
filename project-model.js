@@ -39,8 +39,8 @@ function addResource(newRe, id) {
     });
 }
 
-function getTasks() {
-  return db("Task");
+function getTasks(id) {
+  return db("Task").where({ project_id: id });
 }
 
 function addTask(newTask, id) {

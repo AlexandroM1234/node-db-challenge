@@ -44,11 +44,17 @@ router.post("/:id/resources", (req, res) => {
 
 router.get("/:id/tasks", (req, res) => {
   const { id } = req.params;
-  Projects.getTasks()
-    .where({ project_id: id })
-    .then((tasks) => {
-      res.status(200).json(tasks);
+
+  Projects.getTasks(id).then((tasks) => {
+    Projects.getProjectsById(id).then((project) => {
+      console.log(project);
+      res.status(200).json({
+        tasks,
+        ProjectName: project[0].ProjectName,
+        Description: project[0].Description,
+      });
     });
+  });
 });
 
 router.post("/:id/tasks", (req, res) => {
