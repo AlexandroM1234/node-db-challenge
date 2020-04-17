@@ -29,21 +29,6 @@ exports.up = function (knex) {
         .integer("project_id")
         .notNullable()
         .references("id")
-        .inTable("Projects")
-        .onDelete("RESTRICT")
-        .onUpdate("CASCADE");
-
-      tbl
-        .string("project_name")
-        .notNullable()
-        .references("ProjectName")
-        .inTable("Project")
-        .onDelete("RESTRICT")
-        .onUpdate("CASCADE");
-      tbl
-        .string("project_description")
-        .notNullable()
-        .references("Description")
         .inTable("Project")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
@@ -52,7 +37,7 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists("Project")
+    .dropTableIfExists("Task")
     .dropTableIfExists("Resource")
-    .dropTableIfExists("Task");
+    .dropTableIfExists("Project");
 };

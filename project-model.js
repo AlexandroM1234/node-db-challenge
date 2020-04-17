@@ -11,27 +11,27 @@ module.exports = {
 };
 
 function getProjects() {
-  return db("Projects");
+  return db("Project");
 }
 
 function getProjectsById(id) {
-  return db("Projects").where({ id });
+  return db("Project").where({ id });
 }
 
 function addProject(newProject) {
-  return db("Projects")
+  return db("Project")
     .insert(newProject, "id")
     .then(([id]) => {
       return getProjectsById(id);
     });
 }
 
-function getResources(id) {
-  return db("Resources");
+function getResources() {
+  return db("Resource");
 }
 
 function addResource(newRe, id) {
-  return db("Resources")
+  return db("Resource")
     .where({ project_id: id })
     .insert(newRe, "id")
     .then(([id]) => {
